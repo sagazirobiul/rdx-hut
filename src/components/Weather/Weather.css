@@ -1,0 +1,27 @@
+.todaysDate {
+    color: rgb(255, 111, 111);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 1.2rem 0 0;
+}
+
+.cityName {
+    margin-bottom: 0;
+}
+.nextThreeDay {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 0.7rem 0;
+    background: rgb(255, 111, 111);
+    color: #fff;
+}
+
+.forecast{
+    margin: 5px 0 0;
+    box-shadow: 10px 5px 10px rgb(0 0 0 / 5%);
+}
+
+.forecast span {
+    font-size: 1rem;
+    font-weight: 500;
+}
