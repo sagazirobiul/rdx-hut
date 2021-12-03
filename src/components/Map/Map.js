@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-import axios from 'axios';
 
 
 const containerStyle = {
@@ -26,13 +25,6 @@ const Map = ({getLatAndLng, setLatAndLng}) => {
     } else {
         alert("Geolocation is not supported by this browser.")
     }
-
-    // useEffect(() => {
-    //     axios(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${getLatAndLng.latitude},${getLatAndLng.longitude}&key=${apiKey}`)
-    //     .then(res => {
-    //         // console.log(res.data);
-    //     })
-    // }, [getLatAndLng.latitude, getLatAndLng.longitude])
 
     return (
         <div className="mt-3">
