@@ -7,7 +7,7 @@ const Home = () => {
     const [getLatAndLng, setLatAndLng] = useState({})
 
     return (
-        <div>
+        <div className="pb-5">
             <Row className="w-100 px-1">
                 <Col md={6}>
                     <Weather getLatAndLng={getLatAndLng}/>

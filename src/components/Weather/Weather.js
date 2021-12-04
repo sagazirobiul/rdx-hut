@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './Weather.css'
+import { Accordion } from 'react-bootstrap';
 
 const Weather = ({getLatAndLng}) => {
     const [getWeather, setWeather] = useState({})
@@ -11,6 +12,7 @@ const Weather = ({getLatAndLng}) => {
         axios(`https://api.openweathermap.org/data/2.5/onecall?lat=${getLatAndLng.latitude}&lon=${getLatAndLng.longitude}&exclude=minutely,hourly,alerts&appid=${apiKey}&units=metric`)
         .then(res => {
             setWeather(res);
+            console.log(res)
         })
     }, [getLatAndLng.latitude, getLatAndLng.longitude])
 
@@ -32,13 +34,23 @@ const Weather = ({getLatAndLng}) => {
                 {
                     getThreeDays?.map((data, index) => {
                         return(
-                            <div className="d-flex align-items-center justify-content-around px-2 forecast">
-                                <span>{ new Date(new Date().getTime() + (index + 1) * 24 * 60 * 60 * 1000).toDateString()}</span>
-                                <div>
-                                    <img id="image" src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="" /><span className="fw-bold">{data.temp.day} &deg;C </span>
-                                </div>
-                                <span>{data.weather[0].description}</span>
-                            </div>
+                            <Accordion className="forecast">
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header>
+                                        <div className="d-flex align-items-center justify-content-around px-2 w-100">
+                                            <span>{ new Date(new Date().getTime() + (index + 1) * 24 * 60 * 60 * 1000).toDateString()}</span>
+                                            <div>
+                                                <img id="image" src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="" /><span className="fw-bold">{data.temp.day} &deg;C </span>
+                                            </div>
+                                            <span>{data.weather[0].description}</span>
+                                        </div>
+                                    </Accordion.Header>
+                                    <Accordion.Body className="d-flex justify-content-around">
+                                        <span>Min Temperature: <span className="fw-bold">{data.temp.min} &deg;C</span></span>
+                                        <span>Max Temperature: <span className="fw-bold">{data.temp.max} &deg;C</span></span>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
                         )
                     })
                 }
